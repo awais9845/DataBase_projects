@@ -27,3 +27,17 @@ export const createblog = async (req, res) => {
     });
   }
 };
+
+export const getBlogByUserId = async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const getuser = await blog.find({ createdBy: userId });
+    res.status(200).json({
+      message: "this user is created the blog",
+      getuser,
+      success: true,
+    });
+  } catch (error) {
+    console.log("showing error", error.message);
+  }
+};
